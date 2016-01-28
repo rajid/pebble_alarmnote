@@ -1,0 +1,67 @@
+{
+  "uuid": "5159aaf4-226f-4580-9d71-9994fb0e5127",
+  "shortName": "AlarmNote",
+  "longName": "AlarmNote",
+  "capabilities": [
+    "configurable"
+  ],
+  "companyName": "raj",
+  "versionCode": 1,
+  "versionLabel": "1.5",
+  "watchapp": {
+    "watchface": false
+  },
+  "appKeys": {
+    "AppKeyReady": 0,
+    "fontsize": 1,
+    "disable": 2,
+    "a1": 7,
+    "mess1": 8,
+    "a2": 9,
+    "mess2": 10,
+    "a3": 11,
+    "mess3": 12,
+    "a4": 13,
+    "mess4": 14,
+    "a5": 15,
+    "mess5": 16,
+    "a6": 17,
+    "mess6": 18,
+    "a7": 19,
+    "mess7": 20,
+    "snoozeid": 21,
+    "snoozemsg": 22,
+    "snoozetime": 23,
+    "appsnoozeid": 24,
+    "aid0": 25,
+    "aid1": 26,
+    "aid2": 27,
+    "aid3": 28,
+    "aid4": 29,
+    "aid5": 30,
+    "aid6": 31,
+    "atime0": 32,
+    "atime1": 33,
+    "atime2": 34,
+    "atime3": 35,
+    "atime4": 36,
+    "atime5": 37,
+    "atime6": 38
+  },
+  "resources": {
+    "media": [
+      {
+        "menuIcon": true,
+        "type": "png",
+        "name": "IMAGE_MENU_ICON",
+        "file": "images/menu_icon_gatekeeper_watch.png"
+      }
+    ]
+  },
+  "targetPlatforms": [
+    "aplite",
+    "basalt",
+    "chalk"
+  ],
+  "sdkVersion": "3"
+}
