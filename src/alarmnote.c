@@ -157,7 +157,7 @@ time_t last_vibes;                      /* last time vibration was done */
 bool dirty_pins=false;
 bool alarms_disabled=false;             /* alarms currently disabled */
 
-void snooze_callback(void *data);
+// void snooze_callback(void *data);
 
 void
 display_pill_reminder (int alarm_num) 
@@ -257,28 +257,29 @@ create_and_push_text_window(char *text, GFont font)
 WakeupId
 schedule_my_wakeup (time_t alarm_time,
                     int alarm_num,
-                    char *emessage) 
+                    char *emessage, time_t *actual_time) 
 {
     WakeupId wake_id;
-    char string[60];
     
     /* Schedule a new (snooze) wakeup */
-    for (wake_id = E_RANGE ;
-         wake_id == E_RANGE ;
-         alarm_time -= (1 * MINUTES)) {
+    for (wake_id = E_RANGE ; wake_id == E_RANGE ; alarm_time -= (1 * MINUTES)) {
         wake_id = wakeup_schedule(alarm_time,
                                   alarm_num,
-                                  false);
+                                  true);
         app_log(APP_LOG_LEVEL_WARNING,
                 __FILE__,
                 __LINE__,
-                "Alarm for time %u set with id %d",
-                (uint)alarm_time, (int)wake_id);
+                "My wakeup - Alarm for time %u (context=%d) set with id %d",
+                (uint)alarm_time, alarm_num, (int)wake_id);
+        if (wake_id > 0) break;
     }
+
     if (wake_id < 0) {
-        snprintf(string, sizeof(string),
+        snprintf(text_message, sizeof(text_message),
                  "Error scheduling snooze - %d", (int)wake_id);
-        create_and_push_text_window(string, note_font);
+        create_and_push_text_window(text_message, note_font);
+    } else {
+        *actual_time = alarm_time;
     }
 
     return(wake_id);
@@ -289,7 +290,7 @@ schedule_my_wakeup (time_t alarm_time,
 void
 menu_callback (int index, void *context) 
 {
-    time_t	t;
+    time_t	t, new_t;
 
     t = now;
 
@@ -299,20 +300,22 @@ menu_callback (int index, void *context)
 	    "Menu callback on row %d, now=%u\n", index, (int)t);
 
     t += ((index+1)*5) * 60;
+    t = t - (t % 60);                   /* remove seconds */
 
     snooze_id = schedule_my_wakeup(t,
                                    alarm_current+1+100, /* signal a snooze */
-                                   "Error scheduling snooze - %d");
+                                   "Error scheduling snooze - %d", &new_t);
 //    snooze_id = wakeup_schedule(t,
 //                                alarm_current+1 + 100 /* signal it's a snooze */,
 //                                false);
 
+    t = new_t;
     snooze_time = t;
     snooze_msgid = alarm_current;
     alarm_time[7] = t;
-    app_snooze_id = app_timer_register((t - now) * 1000,
-                                       snooze_callback,
-                                       (void *)alarm_current+1 + 100);
+//    app_snooze_id = app_timer_register((t - now) * 1000,
+//                                       snooze_callback,
+//                                       (void *)alarm_current+1 + 100);
     app_log(APP_LOG_LEVEL_WARNING,
 	    __FILE__,
 	    __LINE__,
@@ -434,7 +437,7 @@ cancel_snooze(void)
     snooze_id = 0;
     snooze_time = 0;
     snooze_msgid = 0;
-    app_timer_cancel(app_snooze_id);
+//    app_timer_cancel(app_snooze_id);
     app_snooze_id = NULL;
     persist_write_int(SNOOZEID, (uint32_t)snooze_id);
     persist_write_int(APPSNOOZEID, (uint32_t)app_snooze_id);
@@ -464,7 +467,7 @@ update_pins (int pin)
     app_log(APP_LOG_LEVEL_WARNING,
             __FILE__,
             __LINE__,
-            "Begin writing to JS");
+            "\n\n======== Update Pins - Begin writing to JS");
     rc = app_message_outbox_begin(&iter);
     if (!iter) {
         // Error creating outbound message
@@ -516,7 +519,7 @@ void
 skip_next_alarm(void) {
     int alarm_num;
     int days;
-    time_t a_time;
+    time_t a_time, new_time;
 
     alarm_num = find_next_alarm();
 
@@ -531,10 +534,11 @@ skip_next_alarm(void) {
     alarm_id[alarm_num] = schedule_my_wakeup((int)alarm_time[alarm_num],
                                              alarm_num+1,
                                              "Error scheduling "
-                                             "an alarm - %d");
+                                             "an alarm - %d", &new_time);
 //    alarm_id[alarm_num] = wakeup_schedule((int)alarm_time[alarm_num],
 //					  alarm_num+1, true);
 
+    alarm_time[alarm_num] = new_time;   /* save actual time scheduled */
     persist_write_int(alarmid_idx[alarm_num], (uint32_t)alarm_id[alarm_num]);
     persist_write_int(alarmtime_idx[alarm_num], (uint32_t)alarm_time[alarm_num]);
     dirty_pins = true;
@@ -604,6 +608,10 @@ schedule_alarms(time_t now, struct tm* now_tick, bool schedule_it)
     int32_t time_inc;
 
     for (i = 0 ; i < MAX_ALARMS-1 ; i++) {
+        app_log(APP_LOG_LEVEL_WARNING,
+                __FILE__,
+                __LINE__,
+                "Scheduling alarm[%d] =============", i);
 	if (mess[i] && *mess[i]) {
 //	    app_log(APP_LOG_LEVEL_WARNING,
 //		    __FILE__,
@@ -615,7 +623,7 @@ schedule_alarms(time_t now, struct tm* now_tick, bool schedule_it)
 //		    "making time for alarm %d\n", i);
 
             alarm_tim = alarm_time[i];
-            if (alarm_tim == 0) {
+//            if (alarm_tim == 0) {
                 time_inc = ((alarm_hours[i] - now_tick->tm_hour) * HOURS) +
                     ((alarm_mins[i] - now_tick->tm_min) * MINUTES) -
                     now_tick->tm_sec;
@@ -626,18 +634,21 @@ schedule_alarms(time_t now, struct tm* now_tick, bool schedule_it)
                     app_log(APP_LOG_LEVEL_WARNING,
                             __FILE__,
                             __LINE__,
-                            "alarm %d is for tomorrow %u\n", i,
+                            "alarm %d is for tomorrow %u", i,
                             (unsigned int)alarm_tim);
                     alarm_tim += 1 * DAYS;
                 }
-            }
+//            }
             
 	    if (schedule_it) {
+                time_t new_t;
+                
                 alarm_id[i] = schedule_my_wakeup(alarm_tim,
                                                  i+1,
                                                  "Error scheduling "
-                                                 "an alarm - %d");
+                                                 "an alarm - %d", &new_t);
 //		alarm_id[i] = wakeup_schedule(alarm_tim, i+1, true);
+                alarm_tim = new_t;      /* reset to actual time scheduled */
                 alarm_time[i] = alarm_tim;
                 persist_write_int(alarmid_idx[i],
                                   (uint32_t)alarm_id[i]);
@@ -646,7 +657,7 @@ schedule_alarms(time_t now, struct tm* now_tick, bool schedule_it)
 		app_log(APP_LOG_LEVEL_WARNING,
 			__FILE__,
 			__LINE__,
-			"scheduling for %u", (uint)alarm_tim);
+			"scheduled for %u", (uint)alarm_tim);
 	    } else {
 		alarm_time[i] = alarm_tim;
                 alarm_id[i] = 0;        /* don't have this */
@@ -656,10 +667,6 @@ schedule_alarms(time_t now, struct tm* now_tick, bool schedule_it)
 			"setting");
 	    }
 
-	    app_log(APP_LOG_LEVEL_WARNING,
-		    __FILE__,
-		    __LINE__,
-		    "alarm_id[%d] = %u\n", i, (unsigned int)alarm_id[i]);
 	    if (alarm_id[i] < 0) {
 		app_log(APP_LOG_LEVEL_WARNING,
 			__FILE__,
@@ -673,23 +680,28 @@ schedule_alarms(time_t now, struct tm* now_tick, bool schedule_it)
 
     /* Need to make sure our snooze timer is set as well */
     if (snooze_time > now) {
+        time_t new_time;
         snooze_id = schedule_my_wakeup(snooze_time,
                                        snooze_msgid+1+100,
-                                       "Error scheduling snooze - %d");
+                                       "Error scheduling snooze - %d", &new_time);
 //        snooze_id = wakeup_schedule(snooze_time,
 //                                    snooze_msgid+1 + 100 /* signal it's a snooze */,
 //                                    false);
+        snooze_time = new_time;
         if (snooze_id == -1) {
             snooze_id = 0;
         } else {
             app_log(APP_LOG_LEVEL_WARNING, __FILE__, __LINE__,
                     "Scheduling snooze wakup in %u seconds\n",
                     (uint)(snooze_time - now));
-            app_snooze_id = app_timer_register((snooze_time - now) * 1000,
-                                               snooze_callback,
-                                               (void *)snooze_msgid+1+100);
+//            app_snooze_id = app_timer_register((snooze_time - now) * 1000,
+//                                               snooze_callback,
+//                                               (void *)snooze_msgid+1+100);
         }
     }
+
+    dirty_pins = true;
+    update_pins(0);                 /* update timeline pins */
 }
 
 
@@ -1057,7 +1069,7 @@ subscribe_to_wakeups(AppLaunchReason reason)
     app_log(APP_LOG_LEVEL_WARNING,
 	    __FILE__,
 	    __LINE__,
-	    "subscribe to wakeups, now=%d\n", (int)now);
+	    "\n\n====== Subscribe to wakeups, now=%d", (int)now);
 
     if (reason != APP_LAUNCH_WAKEUP) {
 	app_log(APP_LOG_LEVEL_WARNING,
@@ -1083,7 +1095,16 @@ update_configuration (AppLaunchReason reason)
     int i;
     uint32_t val;
 
+    app_log(APP_LOG_LEVEL_WARNING,
+            __FILE__,
+            __LINE__,
+            "\n\n======== Update configuration");
+
     for (i = 0 ; i < MAX_ALARMS ; i++) {
+        app_log(APP_LOG_LEVEL_WARNING,
+                __FILE__,
+                __LINE__,
+                "Alarm[%d] ===========", i);
 	if (persist_exists(time_idx[i])) {
 	    if (persist_read_string(time_idx[i],
 				    string, sizeof(string)) > 0) {
@@ -1234,7 +1255,13 @@ void handle_msg_received (DictionaryIterator *received, void *context)
 
     Tuple *tuple;
     int i;
+    bool got_alarms=false;
 
+
+    app_log(APP_LOG_LEVEL_WARNING,
+            __FILE__,
+            __LINE__,
+            "\n\n======== Received a msg");
 
 /* Alarms */
 
@@ -1242,6 +1269,9 @@ void handle_msg_received (DictionaryIterator *received, void *context)
 	tuple = dict_find(received, time_idx[i]);
         if (!tuple)
             continue;
+
+        got_alarms=true;                /* found some alarm info */
+
 	if (tuple->value->cstring &&
             *tuple->value->cstring) {
             app_log(APP_LOG_LEVEL_WARNING,
@@ -1281,6 +1311,7 @@ void handle_msg_received (DictionaryIterator *received, void *context)
         }
     }
     
+#ifdef notdef
     if (persist_exists(SNOOZEID)) {
 	uint32_t val;
 	
@@ -1310,6 +1341,7 @@ void handle_msg_received (DictionaryIterator *received, void *context)
 		    (unsigned int)snooze_msgid);
 	}
     }
+#endif
 
     tuple = dict_find(received, 0);
     if (tuple) {
@@ -1332,9 +1364,12 @@ void handle_msg_received (DictionaryIterator *received, void *context)
         persist_write_int(FONTSIZE, (int32_t)Font_size);
     }
     
-    update_configuration(APP_LAUNCH_USER);
-
-    update_pins(0);
+    if (got_alarms) {
+        update_configuration(APP_LAUNCH_USER);
+        update_pins(0);
+    } else if (dirty_pins && got_connections) {
+        update_pins(0);
+    }
 }
 
 void handle_msg_dropped (AppMessageResult reason, void *ctx)
@@ -1416,10 +1451,14 @@ handle_wakeup (WakeupId wakeup_id, int32_t cookie)
         alarm_tim = now + time_inc;
         alarm_tim += 1 * DAYS;
         
-        alarm_id[i] = schedule_my_wakeup(alarm_tim,
-                                         i+1,
-                                         "Error scheduling "
-                                         "an alarm - %d");
+        {
+            time_t new_time;
+            alarm_id[i] = schedule_my_wakeup(alarm_tim,
+                                             i+1,
+                                             "Error scheduling "
+                                             "an alarm - %d", &new_time);
+            alarm_tim = new_time;
+        }
 //	alarm_id[i] = wakeup_schedule(alarm_tim, i + 1, true);
         persist_write_int(alarmid_idx[i],
                           (uint32_t)alarm_id[i]);
@@ -1450,6 +1489,7 @@ handle_wakeup (WakeupId wakeup_id, int32_t cookie)
 	    __LINE__,
 	    "Sleep callback, alarm_current=%d", (int)alarm_current);
 
+#ifdef notdef
     /*
      * If we have already displayed this alarm within the last
      * 3 minutes, don't display it again.
@@ -1458,6 +1498,7 @@ handle_wakeup (WakeupId wakeup_id, int32_t cookie)
         last_note_alarm == alarm_current) {
         return;
     }
+#endif
 
     display_pill_reminder(alarm_current);
 
@@ -1465,6 +1506,7 @@ handle_wakeup (WakeupId wakeup_id, int32_t cookie)
 }
 
 
+#ifdef notdef
 /*
  * Only called via app_timer_register for snooze events
  * "data" is set to the alarm_id index which caused the snooze
@@ -1476,6 +1518,7 @@ snooze_callback (void *data)
  
     handle_wakeup(alarm_id[id-1], (int32_t)data);
 }
+#endif
 
 
 void
