@@ -17,7 +17,7 @@ Pebble.addEventListener("showConfiguration", function()
 			    var options = JSON.parse(localStorage.getItem('options'));
 			    console.log("read options: " + JSON.stringify(options));
 			    console.log("showing configuration");
-			    var url='http://mischievous.us/config4.html';
+			    var url='http://mischievous.us/config6.html';
 			    
                             Pebble.getTimelineToken();
                             
@@ -27,6 +27,12 @@ Pebble.addEventListener("showConfiguration", function()
                                     url = url + 'a1=';
                                 } else {
                                     url = url + 'a1=' + encodeURIComponent(options.a1);
+                                }
+                                url = url + '&';
+                                if (typeof options.a1w == 'undefined') {
+                                    url = url + 'a1w=127';
+                                } else {
+                                    url = url + 'a1w=' + encodeURIComponent(options.a1w);
                                 }
                                 url = url + '&';
                                 if (typeof options.mess1 == 'undefined') {
@@ -41,6 +47,12 @@ Pebble.addEventListener("showConfiguration", function()
                                     url = url + 'a2=' + encodeURIComponent(options.a2);
                                 }
                                 url = url + '&';
+                                if (typeof options.a2w == 'undefined') {
+                                    url = url + 'a2w=127';
+                                } else {
+                                    url = url + 'a2w=' + encodeURIComponent(options.a2w);
+                                }
+                                url = url + '&';
                                 if (typeof options.mess2 == 'undefined') {
                                     url = url + 'mess2=';
                                 } else {
@@ -51,6 +63,12 @@ Pebble.addEventListener("showConfiguration", function()
                                     url = url + 'a3=';
                                 } else {
                                     url = url + 'a3=' + encodeURIComponent(options.a3);
+                                }
+                                url = url + '&';
+                                if (typeof options.a3w == 'undefined') {
+                                    url = url + 'a3w=127';
+                                } else {
+                                    url = url + 'a3w=' + encodeURIComponent(options.a3w);
                                 }
                                 url = url + '&';
                                 if (typeof options.mess3 == 'undefined') {
@@ -65,6 +83,12 @@ Pebble.addEventListener("showConfiguration", function()
                                     url = url + 'a4=' + encodeURIComponent(options.a4);
                                 }
                                 url = url + '&';
+                                if (typeof options.a4w == 'undefined') {
+                                    url = url + 'a4w=127';
+                                } else {
+                                    url = url + 'a4w=' + encodeURIComponent(options.a4w);
+                                }
+                                url = url + '&';
                                 if (typeof options.mess4 == 'undefined') {
                                     url = url + 'mess4=';
                                 } else {
@@ -75,6 +99,12 @@ Pebble.addEventListener("showConfiguration", function()
                                     url = url + 'a5=';
                                 } else {
                                     url = url + 'a5=' + encodeURIComponent(options.a5);
+                                }
+                                url = url + '&';
+                                if (typeof options.a5w == 'undefined') {
+                                    url = url + 'a5w=127';
+                                } else {
+                                    url = url + 'a5w=' + encodeURIComponent(options.a5w);
                                 }
                                 url = url + '&';
                                 if (typeof options.mess5 == 'undefined') {
@@ -89,6 +119,12 @@ Pebble.addEventListener("showConfiguration", function()
                                     url = url + 'a6=' + encodeURIComponent(options.a6);
                                 }
                                 url = url + '&';
+                                if (typeof options.a6w == 'undefined') {
+                                    url = url + 'a6w=127';
+                                } else {
+                                    url = url + 'a6w=' + encodeURIComponent(options.a6w);
+                                }
+                                url = url + '&';
                                 if (typeof options.mess6 == 'undefined') {
                                     url = url + 'mess6=';
                                 } else {
@@ -99,6 +135,12 @@ Pebble.addEventListener("showConfiguration", function()
                                     url = url + 'a7=';
                                 } else {
                                     url = url + 'a7=' + encodeURIComponent(options.a7);
+                                }
+                                url = url + '&';
+                                if (typeof options.a7w == 'undefined') {
+                                    url = url + 'a7w=127';
+                                } else {
+                                    url = url + 'a7w=' + encodeURIComponent(options.a7w);
                                 }
                                 url = url + '&';
                                 if (typeof options.mess7 == 'undefined') {
@@ -182,7 +224,7 @@ Pebble.addEventListener("appmessage", function(e)
                                 pushPin(e.payload.a4, e.payload.mess4, "0004");
                             } else {
                                 pushPin("", "", "0004");
-                            }
+}
                             if (e.payload.a5 && e.payload.mess5) {
                                 console.log("a5=" + e.payload.a5);
                                 pushPin(e.payload.a5, e.payload.mess5, "0005");

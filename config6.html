@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.css" />
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script src="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.js"></script>
+    <title>AlarmNote</title>
+  </head>
+
+  <body>
+    <div data-role="page" id="page1">
+      <div data-theme="" data-role="header">
+	<h3>AlarmNote</h3>
+      </div>
+      <div data-role="content">
+	<h2>Settings</h2>
+	<div data-role="fieldcontain">
+	Alarms:
+<p>
+<table><tr>
+	  <label for="a1">Alarm 1 (24 hour form)</label>
+<tr><td>
+	  <input name="a1" id="a1h" data-theme="" type="text"
+		  value="" size="3" maxlength="2" min="0" max="23">
+	  </input>
+<td>
+:
+<td>
+	  <input name="a1" id="a1m" data-theme="" type="text"
+		  value="" size="3" maxlength="2" min="0" max="59">
+</table>
+<form name="a1week" id="a1week">
+<table><tr>
+<td><input name="a1w" id="sun" data-theme="" type="checkbox" value="Sun">Sun</input>
+<td><input name="a1w" id="mon" data-theme="" type="checkbox" value="Mon">Mon</input>
+<td><input name="a1w" id="tue" data-theme="" type="checkbox" value="Tue">Tue</input>
+<td><input name="a1w" id="wed" data-theme="" type="checkbox" value="Wed">Wed</input>
+<td><input name="a1w" id="thu" data-theme="" type="checkbox" value="Thu">Thu</input>
+<td><input name="a1w" id="fri" data-theme="" type="checkbox" value="Fri">Fri</input>
+<td><input name="a1w" id="sat" data-theme="" type="checkbox" value="Sun">Sat</input>
+</tr></table>
+</form>
+<br>
+	  <label for="mess1">Message 1</label>
+	  <input name="mess1" id="mess1" data-theme="" type="text"
+		  value="">
+	  </input>
+	
+<br>
+<table><tr>
+	  <label for="a2">Alarm 2 (24 hour form)</label>
+<tr><td>
+	  <input name="a2" id="a2h" data-theme="" type="text"
+		  value="" size="3" maxlength="2" min="0" max="23">
+	  </input>
+<td>
+:
+<td>
+	  <input name="a2" id="a2m" data-theme="" type="text"
+		  value="" size="3" maxlength="2" min="0" max="59">
+</table>
+<form name="a2week" id="a2week">
+<table><tr>
+<td><input name="a2w" id="sun" data-theme="" type="checkbox" value="Sun">Sun</input>
+<td><input name="a2w" id="mon" data-theme="" type="checkbox" value="Mon">Mon</input>
+<td><input name="a2w" id="tue" data-theme="" type="checkbox" value="Tue">Tue</input>
+<td><input name="a2w" id="wed" data-theme="" type="checkbox" value="Wed">Wed</input>
+<td><input name="a2w" id="thu" data-theme="" type="checkbox" value="Thu">Thu</input>
+<td><input name="a2w" id="fri" data-theme="" type="checkbox" value="Fri">Fri</input>
+<td><input name="a2w" id="sat" data-theme="" type="checkbox" value="Sun">Sat</input>
+</tr></table>
+</form>
+<br>
+	  <label for="mess2">Message 2</label>
+	  <input name="mess2" id="mess2" data-theme="" type="text"
+		  value="">
+	  </input>
+
+<br>
+<table><tr>
+	  <label for="a3">Alarm 3 (24 hour form)</label>
+<tr><td>
+	  <input name="a3" id="a3h" data-theme="" type="text"
+		  value="" size="3" maxlength="2" min="0" max="23">
+	  </input>
+<td>
+:
+<td>
+	  <input name="a3" id="a3m" data-theme="" type="text"
+		  value="" size="3" maxlength="2" min="0" max="59">
+</table>
+<form name="a3week" id="a3week">
+<table><tr>
+<td><input name="a3w" id="sun" data-theme="" type="checkbox" value="Sun">Sun</input>
+<td><input name="a3w" id="mon" data-theme="" type="checkbox" value="Mon">Mon</input>
+<td><input name="a3w" id="tue" data-theme="" type="checkbox" value="Tue">Tue</input>
+<td><input name="a3w" id="wed" data-theme="" type="checkbox" value="Wed">Wed</input>
+<td><input name="a3w" id="thu" data-theme="" type="checkbox" value="Thu">Thu</input>
+<td><input name="a3w" id="fri" data-theme="" type="checkbox" value="Fri">Fri</input>
+<td><input name="a3w" id="sat" data-theme="" type="checkbox" value="Sun">Sat</input>
+</tr></table>
+</form>
+<br>
+	  <label for="mess3">Message 3</label>
+	  <input name="mess3" id="mess3" data-theme="" type="text"
+		  value="">
+	  </input>
+
+<br>
+<table><tr>
+	  <label for="a4">Alarm 4 (24 hour form)</label>
+<tr><td>
+	  <input name="a4" id="a4h" data-theme="" type="text"
+		  value="" size="3" maxlength="2" min="0" max="23">
+	  </input>
+<td>
+:
+<td>
+	  <input name="a4" id="a4m" data-theme="" type="text"
+		  value="" size="3" maxlength="2" min="0" max="59">
+</table>
+<form name="a4week" id="a4week">
+<table><tr>
+<td><input name="a4w" id="sun" data-theme="" type="checkbox" value="Sun">Sun</input>
+<td><input name="a4w" id="mon" data-theme="" type="checkbox" value="Mon">Mon</input>
+<td><input name="a4w" id="tue" data-theme="" type="checkbox" value="Tue">Tue</input>
+<td><input name="a4w" id="wed" data-theme="" type="checkbox" value="Wed">Wed</input>
+<td><input name="a4w" id="thu" data-theme="" type="checkbox" value="Thu">Thu</input>
+<td><input name="a4w" id="fri" data-theme="" type="checkbox" value="Fri">Fri</input>
+<td><input name="a4w" id="sat" data-theme="" type="checkbox" value="Sun">Sat</input>
+</tr></table>
+</form>
+<br>
+	  <label for="mess4">Message 4</label>
+	  <input name="mess4" id="mess4" data-theme="" type="text"
+		  value="">
+	  </input>
+
+<br>
+<table><tr>
+	  <label for="a5">Alarm 5 (24 hour form)</label>
+<tr><td>
+	  <input name="a5" id="a5h" data-theme="" type="text"
+		  value="" size="3" maxlength="2" min="0" max="23">
+	  </input>
+<td>
+:
+<td>
+	  <input name="a5" id="a5m" data-theme="" type="text"
+		  value="" size="3" maxlength="2" min="0" max="59">
+</table>
+<form name="a5week" id="a5week">
+<table><tr>
+<td><input name="a5w" id="sun" data-theme="" type="checkbox" value="Sun">Sun</input>
+<td><input name="a5w" id="mon" data-theme="" type="checkbox" value="Mon">Mon</input>
+<td><input name="a5w" id="tue" data-theme="" type="checkbox" value="Tue">Tue</input>
+<td><input name="a5w" id="wed" data-theme="" type="checkbox" value="Wed">Wed</input>
+<td><input name="a5w" id="thu" data-theme="" type="checkbox" value="Thu">Thu</input>
+<td><input name="a5w" id="fri" data-theme="" type="checkbox" value="Fri">Fri</input>
+<td><input name="a5w" id="sat" data-theme="" type="checkbox" value="Sun">Sat</input>
+</tr></table>
+</form>
+<br>
+	  <label for="mess5">Message 5</label>
+	  <input name="mess5" id="mess5" data-theme="" type="text"
+		  value="">
+	  </input>
+
+<br>
+<table><tr>
+	  <label for="a6">Alarm 6 (24 hour form)</label>
+<tr><td>
+	  <input name="a6" id="a6h" data-theme="" type="text"
+		  value="" size="3" maxlength="2" min="0" max="23">
+	  </input>
+<td>
+:
+<td>
+	  <input name="a6" id="a6m" data-theme="" type="text"
+		  value="" size="3" maxlength="2" min="0" max="59">
+</table>
+<form name="a6week" id="a6week">
+<table><tr>
+<td><input name="a6w" id="sun" data-theme="" type="checkbox" value="Sun">Sun</input>
+<td><input name="a6w" id="mon" data-theme="" type="checkbox" value="Mon">Mon</input>
+<td><input name="a6w" id="tue" data-theme="" type="checkbox" value="Tue">Tue</input>
+<td><input name="a6w" id="wed" data-theme="" type="checkbox" value="Wed">Wed</input>
+<td><input name="a6w" id="thu" data-theme="" type="checkbox" value="Thu">Thu</input>
+<td><input name="a6w" id="fri" data-theme="" type="checkbox" value="Fri">Fri</input>
+<td><input name="a6w" id="sat" data-theme="" type="checkbox" value="Sun">Sat</input>
+</tr></table>
+</form>
+<br>
+	  <label for="mess6">Message 6</label>
+	  <input name="mess6" id="mess6" data-theme="" type="text"
+		  value="">
+	  </input>
+
+<br>
+<table><tr>
+	  <label for="a7">Alarm 7 (24 hour form)</label>
+<tr><td>
+	  <input name="a7" id="a7h" data-theme="" type="text"
+		  value="" size="3" maxlength="2" min="0" max="23">
+	  </input>
+<td>
+:
+<td>
+	  <input name="a7" id="a7m" data-theme="" type="text"
+		  value="" size="3" maxlength="2" min="0" max="59">
+</table>
+<form name="a7week" id="a7week">
+<table><tr>
+<td><input name="a7w" id="sun" data-theme="" type="checkbox" value="Sun">Sun</input>
+<td><input name="a7w" id="mon" data-theme="" type="checkbox" value="Mon">Mon</input>
+<td><input name="a7w" id="tue" data-theme="" type="checkbox" value="Tue">Tue</input>
+<td><input name="a7w" id="wed" data-theme="" type="checkbox" value="Wed">Wed</input>
+<td><input name="a7w" id="thu" data-theme="" type="checkbox" value="Thu">Thu</input>
+<td><input name="a7w" id="fri" data-theme="" type="checkbox" value="Fri">Fri</input>
+<td><input name="a7w" id="sat" data-theme="" type="checkbox" value="Sun">Sat</input>
+</tr></table>
+</form>
+<br>
+	  <label for="mess7">Message 7</label>
+	  <input name="mess7" id="mess7" data-theme="" type="text"
+		  value="">
+	  </input>
+
+<br>
+Font size:<br>
+<form name="ftsize" id="ftsz">
+<div><p><input type="radio" name="sz" id="24" value="24" />24</div>
+<div><p><input type="radio" name="sz" id="28" value="28" />28</div>
+<div><p><input type="radio" name="sz" id="29" value="29" />28 serif</div>
+<div><p><input type="radio" name="sz" id="30" value="30" />30</div>
+</form>
+
+<br>
+
+ </div> 
+ 	<div class="ui-body ui-body-b"> 
+	  <fieldset class="ui-grid-a"> 
+	    <div class="ui-block-a"><button type="submit" data-theme="d" id="b-cancel">Cancel</button></div>
+	    <div class="ui-block-b"><button type="submit" data-theme="a" id="b-submit">Submit</button></div>
+	  </fieldset>
+	</div> 
+
+
+
+
+      </div> 
+    </div> 
+    <script>
+      <!-- from http://snipplr.com/view/26662/get-url-parameters-with-jquery--improved/ -->
+      $.urlParam = function(name){
+	var results = new RegExp('[\\?&]' + name + '=([^&#]*)').exec(window.location.href);
+	if (!results) { return 0; }
+	return results[1] || 0;
+      }
+
+      function updateControls() {
+        var month = decodeURIComponent($.urlParam("month"));
+        if (month != '') {
+          $("#month").val(month).slider("refresh");
+        }
+        var date = decodeURIComponent($.urlParam("date"));
+        if (date != '') {
+          $("#date").val(date).slider("refresh");
+        }
+        var hour = decodeURIComponent($.urlParam("hour"));
+        if (hour != '') {
+          $("#hour").val(hour).slider("refresh");
+        }
+        var minute = decodeURIComponent($.urlParam("minute"));
+        if (minute != '') {
+          $("#minute").val(minute).slider("refresh");
+        }
+        var bluetooth = decodeURIComponent($.urlParam("bluetooth"));
+        if (bluetooth != '') {
+          $("#bluetooth").val(bluetooth).slider("refresh");
+        }
+        var a1 = decodeURIComponent($.urlParam("a1"));
+        if (a1 != '') {
+          var t=a1.split(":");
+          $("#a1h").val(t[0]);
+          $("#a1m").val(t[1]);
+        }
+	var a1w = decodeURIComponent($.urlParam("a1w"));
+	if ((a1w & 1) != 0) {document.forms["a1week"]["sun"].checked = true;}
+	if ((a1w & 2) != 0) {document.forms["a1week"]["mon"].checked = true;}
+	if ((a1w & 4) != 0) {document.forms["a1week"]["tue"].checked = true;}
+	if ((a1w & 8) != 0) {document.forms["a1week"]["wed"].checked = true;}
+	if ((a1w & 16) != 0) {document.forms["a1week"]["thu"].checked = true;}
+	if ((a1w & 32) != 0) {document.forms["a1week"]["fri"].checked = true;}
+	if ((a1w & 64) != 0) {document.forms["a1week"]["sat"].checked = true;}
+        var mess1 = decodeURIComponent($.urlParam("mess1"));
+        if (mess1 != 0) {
+          $("#mess1").val(mess1);
+        }
+        var a2 = decodeURIComponent($.urlParam("a2"));
+        if (a2 != '') {
+          var t=a2.split(":");
+          $("#a2h").val(t[0]);
+          $("#a2m").val(t[1]);
+        }
+	var a2w = decodeURIComponent($.urlParam("a2w"));
+	if ((a2w & 1) != 0) {document.forms["a2week"]["sun"].checked = true;}
+	if ((a2w & 2) != 0) {document.forms["a2week"]["mon"].checked = true;}
+	if ((a2w & 4) != 0) {document.forms["a2week"]["tue"].checked = true;}
+	if ((a2w & 8) != 0) {document.forms["a2week"]["wed"].checked = true;}
+	if ((a2w & 16) != 0) {document.forms["a2week"]["thu"].checked = true;}
+	if ((a2w & 32) != 0) {document.forms["a2week"]["fri"].checked = true;}
+	if ((a2w & 64) != 0) {document.forms["a2week"]["sat"].checked = true;}
+        var mess2 = decodeURIComponent($.urlParam("mess2"));
+        if (mess2 != 0) {
+          $("#mess2").val(mess2);
+        }
+        var a3 = decodeURIComponent($.urlParam("a3"));
+        if (a3 != '') {
+          var t=a3.split(":");
+          $("#a3h").val(t[0]);
+          $("#a3m").val(t[1]);
+        }
+	var a3w = decodeURIComponent($.urlParam("a3w"));
+	if ((a3w & 1) != 0) {document.forms["a3week"]["sun"].checked = true;}
+	if ((a3w & 2) != 0) {document.forms["a3week"]["mon"].checked = true;}
+	if ((a3w & 4) != 0) {document.forms["a3week"]["tue"].checked = true;}
+	if ((a3w & 8) != 0) {document.forms["a3week"]["wed"].checked = true;}
+	if ((a3w & 16) != 0) {document.forms["a3week"]["thu"].checked = true;}
+	if ((a3w & 32) != 0) {document.forms["a3week"]["fri"].checked = true;}
+	if ((a3w & 64) != 0) {document.forms["a3week"]["sat"].checked = true;}
+        var mess3 = decodeURIComponent($.urlParam("mess3"));
+        if (mess3 != 0) {
+          $("#mess3").val(mess3);
+        }
+        var a4 = decodeURIComponent($.urlParam("a4"));
+        if (a4 != '') {
+          var t=a4.split(":");
+          $("#a4h").val(t[0]);
+          $("#a4m").val(t[1]);
+        }
+	var a4w = decodeURIComponent($.urlParam("a4w"));
+	if ((a4w & 1) != 0) {document.forms["a4week"]["sun"].checked = true;}
+	if ((a4w & 2) != 0) {document.forms["a4week"]["mon"].checked = true;}
+	if ((a4w & 4) != 0) {document.forms["a4week"]["tue"].checked = true;}
+	if ((a4w & 8) != 0) {document.forms["a4week"]["wed"].checked = true;}
+	if ((a4w & 16) != 0) {document.forms["a4week"]["thu"].checked = true;}
+	if ((a4w & 32) != 0) {document.forms["a4week"]["fri"].checked = true;}
+	if ((a4w & 64) != 0) {document.forms["a4week"]["sat"].checked = true;}
+        var mess4 = decodeURIComponent($.urlParam("mess4"));
+        if (mess4 != 0) {
+          $("#mess4").val(mess4);
+        }
+        var a5 = decodeURIComponent($.urlParam("a5"));
+        if (a5 != '') {
+          var t=a5.split(":");
+          $("#a5h").val(t[0]);
+          $("#a5m").val(t[1]);
+        }
+	var a5w = decodeURIComponent($.urlParam("a5w"));
+	if ((a5w & 1) != 0) {document.forms["a5week"]["sun"].checked = true;}
+	if ((a5w & 2) != 0) {document.forms["a5week"]["mon"].checked = true;}
+	if ((a5w & 4) != 0) {document.forms["a5week"]["tue"].checked = true;}
+	if ((a5w & 8) != 0) {document.forms["a5week"]["wed"].checked = true;}
+	if ((a5w & 16) != 0) {document.forms["a5week"]["thu"].checked = true;}
+	if ((a5w & 32) != 0) {document.forms["a5week"]["fri"].checked = true;}
+	if ((a5w & 64) != 0) {document.forms["a5week"]["sat"].checked = true;}
+        var mess5 = decodeURIComponent($.urlParam("mess5"));
+        if (mess5 != 0) {
+          $("#mess5").val(mess5);
+        }
+        var a6 = decodeURIComponent($.urlParam("a6"));
+        if (a6 != '') {
+          var t=a6.split(":");
+          $("#a6h").val(t[0]);
+          $("#a6m").val(t[1]);
+        }
+	var a6w = decodeURIComponent($.urlParam("a6w"));
+	if ((a6w & 1) != 0) {document.forms["a6week"]["sun"].checked = true;}
+	if ((a6w & 2) != 0) {document.forms["a6week"]["mon"].checked = true;}
+	if ((a6w & 4) != 0) {document.forms["a6week"]["tue"].checked = true;}
+	if ((a6w & 8) != 0) {document.forms["a6week"]["wed"].checked = true;}
+	if ((a6w & 16) != 0) {document.forms["a6week"]["thu"].checked = true;}
+	if ((a6w & 32) != 0) {document.forms["a6week"]["fri"].checked = true;}
+	if ((a6w & 64) != 0) {document.forms["a6week"]["sat"].checked = true;}
+        var mess6 = decodeURIComponent($.urlParam("mess6"));
+        if (mess6 != 0) {
+          $("#mess6").val(mess6);
+        }
+        var a7 = decodeURIComponent($.urlParam("a7"));
+        if (a7 != '') {
+          var t=a7.split(":");
+          $("#a7h").val(t[0]);
+          $("#a7m").val(t[1]);
+        }
+	var a7w = decodeURIComponent($.urlParam("a7w"));
+	if ((a7w & 1) != 0) {document.forms["a7week"]["sun"].checked = true;}
+	if ((a7w & 2) != 0) {document.forms["a7week"]["mon"].checked = true;}
+	if ((a7w & 4) != 0) {document.forms["a7week"]["tue"].checked = true;}
+	if ((a7w & 8) != 0) {document.forms["a7week"]["wed"].checked = true;}
+	if ((a7w & 16) != 0) {document.forms["a7week"]["thu"].checked = true;}
+	if ((a7w & 32) != 0) {document.forms["a7week"]["fri"].checked = true;}
+	if ((a7w & 64) != 0) {document.forms["a7week"]["sat"].checked = true;}
+        var mess7 = decodeURIComponent($.urlParam("mess7"));
+        if (mess7 != 0) {
+          $("#mess7").val(mess7);
+        }
+        var fnt = decodeURIComponent($.urlParam("fontsize"));
+        if (fnt == 24) {
+            document.getElementById("24").checked=true;
+        }
+        if (fnt == 30) {
+            document.getElementById("30").checked=true;
+        }
+        if (fnt == 28) {
+            document.getElementById("28").checked=true;
+        }
+        if (fnt == 29) {
+            document.getElementById("29").checked=true;
+        }
+      }
+
+      function saveOptions() {
+        var fontsize;
+        if (document.getElementById("24").checked) {
+          fontsize="24";
+        }
+        if (document.getElementById("28").checked) {
+          fontsize="28";
+        }
+        if (document.getElementById("29").checked) {
+          fontsize="29";
+        }
+        if (document.getElementById("30").checked) {
+          fontsize="30";
+        }
+	var a1w=0;
+	if (document.forms["a1week"]["sun"].checked) {a1w += 1;}
+	if (document.forms["a1week"]["mon"].checked) {a1w += 2;}
+	if (document.forms["a1week"]["tue"].checked) {a1w += 4;}
+	if (document.forms["a1week"]["wed"].checked) {a1w += 8;}
+	if (document.forms["a1week"]["thu"].checked) {a1w += 16;}
+	if (document.forms["a1week"]["fri"].checked) {a1w += 32;}
+	if (document.forms["a1week"]["sat"].checked) {a1w += 64;}
+
+	var a2w=0;
+	if (document.forms["a2week"]["sun"].checked) {a2w += 1;}
+	if (document.forms["a2week"]["mon"].checked) {a2w += 2;}
+	if (document.forms["a2week"]["tue"].checked) {a2w += 4;}
+	if (document.forms["a2week"]["wed"].checked) {a2w += 8;}
+	if (document.forms["a2week"]["thu"].checked) {a2w += 16;}
+	if (document.forms["a2week"]["fri"].checked) {a2w += 32;}
+	if (document.forms["a2week"]["sat"].checked) {a2w += 64;}
+
+	var a3w=0;
+	if (document.forms["a3week"]["sun"].checked) {a3w += 1;}
+	if (document.forms["a3week"]["mon"].checked) {a3w += 2;}
+	if (document.forms["a3week"]["tue"].checked) {a3w += 4;}
+	if (document.forms["a3week"]["wed"].checked) {a3w += 8;}
+	if (document.forms["a3week"]["thu"].checked) {a3w += 16;}
+	if (document.forms["a3week"]["fri"].checked) {a3w += 32;}
+	if (document.forms["a3week"]["sat"].checked) {a3w += 64;}
+
+	var a4w=0;
+	if (document.forms["a4week"]["sun"].checked) {a4w += 1;}
+	if (document.forms["a4week"]["mon"].checked) {a4w += 2;}
+	if (document.forms["a4week"]["tue"].checked) {a4w += 4;}
+	if (document.forms["a4week"]["wed"].checked) {a4w += 8;}
+	if (document.forms["a4week"]["thu"].checked) {a4w += 16;}
+	if (document.forms["a4week"]["fri"].checked) {a4w += 32;}
+	if (document.forms["a4week"]["sat"].checked) {a4w += 64;}
+	
+	var a5w=0;
+	if (document.forms["a5week"]["sun"].checked) {a5w += 1;}
+	if (document.forms["a5week"]["mon"].checked) {a5w += 2;}
+	if (document.forms["a5week"]["tue"].checked) {a5w += 4;}
+	if (document.forms["a5week"]["wed"].checked) {a5w += 8;}
+	if (document.forms["a5week"]["thu"].checked) {a5w += 16;}
+	if (document.forms["a5week"]["fri"].checked) {a5w += 32;}
+	if (document.forms["a5week"]["sat"].checked) {a5w += 64;}
+
+	var a6w=0;
+	if (document.forms["a6week"]["sun"].checked) {a6w += 1;}
+	if (document.forms["a6week"]["mon"].checked) {a6w += 2;}
+	if (document.forms["a6week"]["tue"].checked) {a6w += 4;}
+	if (document.forms["a6week"]["wed"].checked) {a6w += 8;}
+	if (document.forms["a6week"]["thu"].checked) {a6w += 16;}
+	if (document.forms["a6week"]["fri"].checked) {a6w += 32;}
+	if (document.forms["a6week"]["sat"].checked) {a6w += 64;}
+
+	var a7w=0;
+	if (document.forms["a7week"]["sun"].checked) {a7w += 1;}
+	if (document.forms["a7week"]["mon"].checked) {a7w += 2;}
+	if (document.forms["a7week"]["tue"].checked) {a7w += 4;}
+	if (document.forms["a7week"]["wed"].checked) {a7w += 8;}
+	if (document.forms["a7week"]["thu"].checked) {a7w += 16;}
+	if (document.forms["a7week"]["fri"].checked) {a7w += 32;}
+	if (document.forms["a7week"]["sat"].checked) {a7w += 64;}
+        var options = {
+          'month': $("#month").val(),
+          'date': $("#date").val(),
+          'hour': $("#hour").val(),
+          'minute': $("#minute").val(),
+          'bluetooth': $("#bluetooth").val(),
+          'a1': $("#a1h").val() + ":" + $("#a1m").val(),
+	  'a1w': a1w,
+          'mess1': $("#mess1").val(),
+          'a2': $("#a2h").val() + ":" + $("#a2m").val(),
+	  'a2w': a2w,
+          'mess2': $("#mess2").val(),
+          'a3': $("#a3h").val() + ":" + $("#a3m").val(),
+	  'a3w': a3w,
+          'mess3': $("#mess3").val(),
+          'a4': $("#a4h").val() + ":" + $("#a4m").val(),
+	  'a4w': a4w,
+          'mess4': $("#mess4").val(),
+          'a5': $("#a5h").val() + ":" + $("#a5m").val(),
+	  'a5w': a5w,
+          'mess5': $("#mess5").val(),
+          'a6': $("#a6h").val() + ":" + $("#a6m").val(),
+	  'a6w': a6w,
+          'mess6': $("#mess6").val(),
+          'a7': $("#a7h").val() + ":" + $("#a7m").val(),
+	  'a7w': a7w,
+          'mess7': $("#mess7").val(),
+          'fontsize': fontsize,
+        }
+        return options;
+      }
+
+      $().ready(function() {
+        $("#b-cancel").click(function() {
+          console.log("Cancel");
+          document.location = "pebblejs://close#";
+        });
+
+        $("#b-submit").click(function() {
+          console.log("Submit");
+
+          var location = "pebblejs://close#" + encodeURIComponent(JSON.stringify(saveOptions()));
+          console.log(location);
+          document.location = location;
+        });
+      });
+
+      $('#page1').bind('pageinit', updateControls);
+    </script>
+  </body>
+</html>

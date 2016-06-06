@@ -46,7 +46,15 @@
     "atime3": 35,
     "atime4": 36,
     "atime5": 37,
-    "atime6": 38
+    "atime6": 38,
+    "lastalarm": 39,
+    "a1w": 40,
+    "a2w": 41,
+    "a3w": 42,
+    "a4w": 43,
+    "a5w": 44,
+    "a6w": 45,
+    "a7w": 46
   },
   "resources": {
     "media": [
